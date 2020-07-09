@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+  </head>
+  <body>
+  	<form th:action="@{/bbs/insert}" method="post" th:object="${articleForm}">
+  		<label for="articleName">投稿者名：</label>
+  		<input id="articleName" name="name" th:field="*{name}"><br>
+  		<label for="articleText">投稿内容：</label>
+  		<textarea rows="5" cols="30" name="content" th:field="*{content}"></textarea><br>
+  		<button>記事投稿</button>
+  	</form>
+  	<hr>
+  	<div class="article" th:each="article : ${articleList}">
+  		<span>投稿者名：</span>
+  		<span th:text="${article.name}"></span><br>
+  		<span>投稿内容：</span><br>
+  		<span th:text="${article.content}"></span><br>
+		<form th:action="@{/bbs/delete}" method="post">
+			<input type="hidden" name="articleId" th:value="${article.id}">
+			<button>記事削除</button>
+		</form><br>
+		<div th:id="${article.id}" class="goodbtn" th:value="${article.id}"><img src="../gd.png" height="10px" width="10px"></div>
+		<span th:id="numOfGood + ${article.id}" >0</span>
+		<div class="comment" th:each="comment : ${article.commentList}">
+  			<span>コメント者名：</span>
+	  		<span th:text="${comment.name}"></span><br>
+	  		<span>コメント内容：</span><br>
+	  		<span th:text="${comment.content}"></span><br>
+  		</div>
+  		<form th:action="@{/bbs/insertCom}" method="post" th:object="${commentForm}">
+  			<label>名前：</label><br>
+  			<input type="text" name="name" th:filed="${name}"><br>
+  			<label>コメント：</label><br>
+  			<textarea rows="5" cols="30" name="content" th:field="*{content}"></textarea><br>
+  			<input type="hidden" name="articleId" th:value="${article.id}">
+  			<button>コメント作成</button>
+  		</form>
+  		<hr>
+  	</div>
+  	<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script th:src="@{/javascript/ex3.js}"></script>
+  </body>
+</html>
