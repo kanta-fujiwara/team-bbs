@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Article;
@@ -17,11 +16,6 @@ import com.example.repository.ArticleRepository;
 public class InsertArticleController {
 	@Autowired
 	private ArticleRepository articleRepository;
-
-	@ModelAttribute
-	public ArticleForm setupArticleForm() {
-		return new ArticleForm();
-	}
 
 	/**
 	 * 記事を挿入する.

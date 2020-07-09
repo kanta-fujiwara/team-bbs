@@ -5,7 +5,7 @@
     <title>Insert title here</title>
   </head>
   <body>
-  	<form th:action="@{/bbs/insert}" method="post" th:object="${articleForm}">
+  	<form th:action="@{/insertArticle}" method="post" th:object="${articleForm}">
   		<label for="articleName">投稿者名：</label>
   		<input id="articleName" name="name" th:field="*{name}"><br>
   		<label for="articleText">投稿内容：</label>
@@ -18,7 +18,7 @@
   		<span th:text="${article.name}"></span><br>
   		<span>投稿内容：</span><br>
   		<span th:text="${article.content}"></span><br>
-		<form th:action="@{/bbs/delete}" method="post">
+		<form th:action="@{/deleteArticle}" method="post">
 			<input type="hidden" name="articleId" th:value="${article.id}">
 			<button>記事削除</button>
 		</form><br>
@@ -30,7 +30,7 @@
 	  		<span>コメント内容：</span><br>
 	  		<span th:text="${comment.content}"></span><br>
   		</div>
-  		<form th:action="@{/bbs/insertCom}" method="post" th:object="${commentForm}">
+  		<form th:action="@{/insertCom}" method="post" th:object="${commentForm}">
   			<label>名前：</label><br>
   			<input type="text" name="name" th:filed="${name}"><br>
   			<label>コメント：</label><br>
